@@ -8,5 +8,6 @@ hmtl,body{
     width: 100%;
 }
 #map{
-    background-color: #1167bc;
+    width: 100%;
+    height: 100vh;
 }
