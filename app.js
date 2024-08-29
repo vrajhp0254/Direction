@@ -17,7 +17,7 @@ io.on("connection", (socket) => {
             {id: socket.id, ...data}
         );
     });
-    console.log("New WS Connection");
+    console.log("New WS Connection established");
 });
 
 app.get("/", (req, res) => {
