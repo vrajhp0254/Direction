@@ -20,6 +20,9 @@ io.on("connection", (socket) => {
     console.log("New WS Connection established");
 });
 
+io.on("disconnect", () => {
+    io.emit("user-disconnected", socket.id);
+});
 app.get("/", (req, res) => {
   res.render("index");
 });

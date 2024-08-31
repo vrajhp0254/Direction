@@ -19,9 +19,20 @@ const map = L.map("map").setView([0, 0], 10);
 
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(map);
 
-const market ={}
+const marker ={}
 
 socket.on("recieve-Location", (coords) => {
     const { id, latitude, longitude } = coords;
     map.setView([latitude, longitude], 10);
+    if(marker[id]){
+        marker[id].setLatLng([latitude, longitude]);
+    }
+    else{
+        marker[id] = L.marker([latitude, longitude]).addTo(map);
+    }
+})
+
+socket.on("user-disconnected", (id) => {
+    map.removeLayer(marker[id]);
+    delete marker[id];  
 })
